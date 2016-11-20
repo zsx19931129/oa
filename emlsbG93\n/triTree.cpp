@@ -89,11 +89,15 @@ public:
                     }else{
                         subParent->right = iter->right;
                     }
+                }else{
+                    newSubRoot = cur->left;
                 }
                 if(!parent){
                     root = newSubRoot;
                 }
-                newSubRoot->left = cur->left;
+                if(cur->mid || cur->right){
+                    newSubRoot->left = cur->left;
+                }
                 newSubRoot->right = cur->right;
                 break;
             }
