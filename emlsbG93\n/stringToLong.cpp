@@ -33,15 +33,18 @@ void getMaxMinLongValueString(string &smax, string &smin){
 }
 
 signed long long parseLong(string str) throw(exception) {
-    regex pattern("(\\s*)([+-]?)(0|([1-9][0-9]*))(\\s*)");
+    // regex pattern("(\\s*)([+-]?)(0|([1-9][0-9]*))(\\s*)");
+    regex pattern("([+-]?)(0|([1-9][0-9]*))");
     smatch smGroups;
     if(!regex_match(str, smGroups, pattern)){
 //        throw invalid_argument("Invalid Number. str:"+str);
         throw exception();
     }
     
-    string sign = smGroups[2];
-    string digits = smGroups[3];
+    // string sign = smGroups[2];
+    // string digits = smGroups[3];
+    string sign = smGroups[1];
+    string digits = smGroups[2];
     size_t dlen = digits.length();
     
     bool negative = false;
