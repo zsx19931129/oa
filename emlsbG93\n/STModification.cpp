@@ -57,33 +57,33 @@ void Tree::insert(int val){
     }
 }
 
-Node* deleteNodeRecursive(Node* rt, int val){
-    if(rt == NULL){
-        return rt;
-    }
-    if(rt->val < val){
-        return deleteNodeRecursive(rt->left, val);
-    }else if(rt->val > val){
-        return deleteNodeRecursive(rt->right, val);
-    }else{
-        if(rt->mid){
-            rt->mid = deleteNodeRecursive(rt->mid, val);
-        }else if(rt->right){
-            Node *iter = rt->right;
-            while(iter->left){
-                iter = iter->left;
-            }
-            int minval = iter->val;
-            rt->val = minval;
-            rt->mid = iter->mid;
-            iter->mid = NULL;
-            rt->right = deleteNodeRecursive(rt->right, minval);
-        }else{
-            rt = rt->left;
-        }
-    }
-    return rt;
-}
+//Node* deleteNodeRecursive(Node* rt, int val){
+//    if(rt == NULL){
+//        return rt;
+//    }
+//    if(rt->val < val){
+//        return deleteNodeRecursive(rt->left, val);
+//    }else if(rt->val > val){
+//        return deleteNodeRecursive(rt->right, val);
+//    }else{
+//        if(rt->mid){
+//            rt->mid = deleteNodeRecursive(rt->mid, val);
+//        }else if(rt->right){
+//            Node *iter = rt->right;
+//            while(iter->left){
+//                iter = iter->left;
+//            }
+//            int minval = iter->val;
+//            rt->val = minval;
+//            rt->mid = iter->mid;
+//            iter->mid = NULL;
+//            rt->right = deleteNodeRecursive(rt->right, minval);
+//        }else{
+//            rt = rt->left;
+//        }
+//    }
+//    return rt;
+//}
 
 // 1.recursive
 //void Tree::remove(int val){
@@ -121,6 +121,12 @@ void Tree::remove(int val){
             }
             if(!parent){
                 root = newSubRoot;
+            }else{
+                if(parent->val > cur->val){
+                    parent->left = newSubRoot;
+                }else{
+                    parent->right = newSubRoot;
+                }
             }
             if(cur->mid || cur->right){
                 newSubRoot->left = cur->left;
