@@ -68,3 +68,7 @@ delete 11
 18.
 insert 16,13,17,1,15,14,11,7,12,12,12
 delete 11
+
+19.
+insert 1,9,5,8,3
+delete 9
