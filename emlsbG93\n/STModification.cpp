@@ -94,10 +94,11 @@ void Tree::insert(int val){
 void Tree::remove(int val){
     Node *cur = root, *parent = NULL, *del=NULL;
     while(cur){
-        parent = cur;
         if(val > cur->val){
+            parent = cur;
             cur = cur->right;
         }else if(val < cur->val){
+            parent = cur;
             cur = cur->left;
         }else{
             del = cur;
