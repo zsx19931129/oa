@@ -131,7 +131,7 @@ void Tree::remove(int val){
                     parent->right = newSubRoot;
                 }
             }
-            if(last){
+            if(!last){
                 newSubRoot->left = cur->left;
             }
             if(newSubRoot){
