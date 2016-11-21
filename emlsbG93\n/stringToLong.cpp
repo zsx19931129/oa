@@ -32,7 +32,7 @@ void getMaxMinLongValueString(string &smax, string &smin){
     smin = string(buffer+1);
 }
 
-long parseLong(string str) throw(exception) {
+signed long long parseLong(string str) throw(exception) {
     regex pattern("(\\s*)([+-]?)(0|([1-9][0-9]*))(\\s*)");
     smatch smGroups;
     if(!regex_match(str, smGroups, pattern)){
@@ -59,7 +59,7 @@ long parseLong(string str) throw(exception) {
         return LONG_MIN;
     }
     
-    long res = 0;
+    signed long long res = 0;
     for(int i=0;i<dlen;++i){
         res = res*10 + (digits[i]-'0');
     }
