@@ -103,6 +103,7 @@ void Tree::remove(int val){
         }else{
             del = cur;
             Node *newSubRoot = NULL;
+            bool last = false;
             if(cur->mid){
                 newSubRoot = cur->mid;
             }else if(cur->right){
@@ -118,6 +119,7 @@ void Tree::remove(int val){
                     subParent->right = iter->right;
                 }
             }else{
+                last = true;
                 newSubRoot = cur->left;
             }
             if(!parent){
@@ -129,10 +131,12 @@ void Tree::remove(int val){
                     parent->right = newSubRoot;
                 }
             }
-            if(cur->mid || cur->right){
+            if(last){
                 newSubRoot->left = cur->left;
             }
-            newSubRoot->right = cur->right;
+            if(newSubRoot){
+                newSubRoot->right = cur->right;
+            }
             break;
         }
     }
