@@ -7,6 +7,7 @@
 #include <cstdio>
 #include <sstream>
 #include <iomanip>
+#include <fstream>
 
 using namespace std;
 
@@ -73,6 +74,19 @@ string getOnlinePercentage(vector<string> &lines){
     }
 }
 
+vector<string> readFile(string &fname){
+    ifstream in(fname.c_str(), ios::in);
+    if(!in){
+        throw "file is not exist";
+    }
+    vector<string> lines;
+    string line;
+    while(getline(in, line)){
+        lines.push_back(line);
+    }
+    return lines;
+}
+
 int main(){
     vector<string> lines;
     lines.push_back("(02/03/2002-14:00:00) :: START");
@@ -81,6 +95,7 @@ int main(){
     lines.push_back("(02/03/2002-14:10:00) :: CONNECTED");
     lines.push_back("(02/03/2002-14:12:00) :: DISCONNECTED");
     lines.push_back("(02/03/2002-14:15:00) :: SHUTDOWN");
+//    vector<string> lines = readFile("input1.txt");
     string res = getOnlinePercentage(lines);
     cout<<res<<endl;
 }
