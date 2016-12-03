@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <fstream>
 #include <unordered_map>
 
 using namespace std;
@@ -34,7 +35,7 @@ public:
     void addEdge(string u, string v);
     vector<string> getAllPaths(string src, string dst);
     void backtracking(string src, string dst, unordered_map<string, bool> &visited, vector<string> &solution, vector<string> &ret);
-//private:
+    //private:
     unordered_map<string, vector<string>>::iterator it;
     unordered_map<string, vector<string>> adj;
 };
@@ -98,17 +99,33 @@ vector<string> getAllPaths(vector<string> lines){
     return g.getAllPaths(src, dst);
 }
 
+vector<string> readFile(string &fname){
+    ifstream in(fname.c_str(), ios::in);
+    if(!in){
+        throw "file is not exist";
+    }
+    vector<string> lines;
+    string line;
+    while(getline(in, line)){
+        lines.push_back(line);
+    }
+    return lines;
+}
+
+
 int main(){
-    vector<string> inputGraph;
-    inputGraph.push_back("A J");
-    inputGraph.push_back("A : B C");
-    inputGraph.push_back("B : C E G");
-    inputGraph.push_back("C : A F");
-    inputGraph.push_back("D : C J");
-    inputGraph.push_back("F : B H");
-    inputGraph.push_back("G : C D");
-    inputGraph.push_back("H : A B F I");
-    inputGraph.push_back("I : B");
+//    vector<string> inputGraph;
+//    inputGraph.push_back("A J");
+//    inputGraph.push_back("A : B C");
+//    inputGraph.push_back("B : C E G");
+//    inputGraph.push_back("C : A F");
+//    inputGraph.push_back("D : C J");
+//    inputGraph.push_back("F : B H");
+//    inputGraph.push_back("G : C D");
+//    inputGraph.push_back("H : A B F I");
+//    inputGraph.push_back("I : B");
+    string fname = "input_1.txt";
+    vector<string> inputGraph = readFile(fname);
     
     vector<string> allPaths = getAllPaths(inputGraph);
     for(int i=0;i<allPaths.size();++i){
